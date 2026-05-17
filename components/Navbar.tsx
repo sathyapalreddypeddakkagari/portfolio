@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { navLinks, personal } from '@/data/portfolio'
+import { assetPath } from '@/lib/assetPath'
 import ThemeToggle from './ThemeToggle'
 
 export default function Navbar() {
@@ -41,7 +42,7 @@ export default function Navbar() {
           {/* Logo */}
           <a href="#hero" className="flex items-center gap-2.5 group flex-shrink-0">
             <div className="w-9 h-9 rounded-lg overflow-hidden ring-1 ring-divider shadow-lg shadow-accent/20 bg-black">
-              <Image src="/logo.png" alt={personal.name} width={36} height={36} priority />
+              <Image src={assetPath('/logo.png')} alt={personal.name} width={36} height={36} priority />
             </div>
             <span className="font-grotesk font-semibold text-sm text-primary/80 group-hover:text-primary transition-colors hidden sm:block">
               {personal.shortName}

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { assetPath } from '@/lib/assetPath'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({
@@ -38,18 +39,18 @@ export const metadata: Metadata = {
     'Python', 'LangChain', 'BERT', 'LightGBM',
   ],
   authors: [{ name: 'Sathyapal Reddy Peddakkagari' }],
-  icons: { icon: '/logo.png', apple: '/logo.png' },
+  icons: { icon: assetPath('/logo.png'), apple: assetPath('/logo.png') },
   openGraph: {
     title: 'Sathyapal Reddy — Data Analytics | AI Research',
     description: 'MS Data Analytics Engineering | GMU | GPA 3.96 | Open to Research Opportunities',
     type: 'website',
-    images: ['/logo.png'],
+    images: [assetPath('/logo.png')],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Sathyapal Reddy — Data Analytics | AI Research',
     description: 'MS Data Analytics Engineering | GMU | GPA 3.96 | Open to Research',
-    images: ['/logo.png'],
+    images: [assetPath('/logo.png')],
   },
 }
 
@@ -65,7 +66,7 @@ const themeInitScript = `
 (function(){
   try {
     var t = localStorage.getItem('theme');
-    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    if (!t) t = 'dark';
     if (t === 'dark') document.documentElement.classList.add('dark');
   } catch(e) { document.documentElement.classList.add('dark'); }
 })();

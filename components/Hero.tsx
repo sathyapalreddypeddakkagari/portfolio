@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { personal, typingPhrases } from '@/data/portfolio'
+import { assetPath } from '@/lib/assetPath'
 
 /* ── Typing hook ─────────────────────────────────────────────────────────── */
 function useTyping(phrases: string[]) {
@@ -145,7 +146,7 @@ export default function Hero() {
           >
             <div className="w-40 h-40 rounded-full overflow-hidden ring-2 ring-accent/30 shadow-2xl shadow-accent/30 bg-black flex items-center justify-center">
               <Image
-                src="/logo.png"
+                src={assetPath('/logo.png')}
                 alt={`${personal.name} logo`}
                 width={160}
                 height={160}

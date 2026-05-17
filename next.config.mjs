@@ -8,7 +8,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 // Otherwise we're on github.io/<repo>/ → prepend the repo name.
 const REPO = 'portfolio'
 const onCustomDomain = existsSync(join(__dirname, 'public', 'CNAME'))
-const basePath = onCustomDomain ? '' : `/${REPO}`
+const isProduction = process.env.NODE_ENV === 'production'
+const basePath = isProduction && !onCustomDomain ? `/${REPO}` : ''
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { personal } from '@/data/portfolio'
+import { assetPath } from '@/lib/assetPath'
 
 export default function Footer() {
   return (
@@ -16,7 +17,7 @@ export default function Footer() {
       >
         <div className="flex items-center gap-3">
           <div className="w-7 h-7 rounded-lg overflow-hidden bg-black ring-1 ring-divider">
-            <Image src="/logo.png" alt={personal.name} width={28} height={28} />
+            <Image src={assetPath('/logo.png')} alt={personal.name} width={28} height={28} />
           </div>
           <span className="font-grotesk text-sm text-secondary">{personal.name}</span>
         </div>

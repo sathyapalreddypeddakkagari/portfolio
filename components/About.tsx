@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { personal } from '@/data/portfolio'
+import { assetPath } from '@/lib/assetPath'
 
 type Highlight = { icon: string; title: string; sub: string }
 
@@ -61,7 +62,7 @@ export default function About() {
                 <div className="absolute inset-0 rounded-full bg-gradient-accent p-[3px]">
                   <div className="w-full h-full rounded-full overflow-hidden bg-surface shadow-xl shadow-accent/30">
                     <Image
-                      src="/profile.jpg"
+                      src={assetPath('/profile.jpg')}
                       alt={personal.name}
                       width={448}
                       height={448}
