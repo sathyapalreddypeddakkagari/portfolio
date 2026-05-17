@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Build output
+.next/
+out/
+build/
+dist/
+
+# Testing
+coverage/
+
+# Runtime / debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env
+.env*.local
+
+# Editor / OS
+.DS_Store
+*.pem
+Thumbs.db
+.vscode/
+.idea/
+
+# TypeScript build info
+*.tsbuildinfo
+next-env.d.ts
+
+# Vercel
+.vercel
+
+# Claude Code local config (keep launch.json out of the public repo)
+.claude/
+
+# The GitHub profile-readme repo has its own .git — don't commit it inside this repo
+sathyapalreddypeddakkagari/
+
+# Source assets that have already been copied into public/
+data/IMG_4179.HEIC
+data/portfolio-image.jpeg
+data/SP Monogram Logo.png
