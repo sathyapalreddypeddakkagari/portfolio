@@ -14,15 +14,39 @@ const fields: Field[] = [
   { id: 'subject', label: 'Subject', type: 'text',  placeholder: 'AI Data Engineer role, project, opportunity...',  required: false },
 ]
 
+const WEB3FORMS_ACCESS_KEY = 'a59dee4e-3133-46d3-936e-b6607d07590a'
+
 export default function Contact() {
   const [sent,    setSent]    = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error,   setError]   = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const form = e.currentTarget
+    setError(null)
     setLoading(true)
-    setTimeout(() => { setLoading(false); setSent(true) }, 1600)
-    setTimeout(() => { setSent(false); (e.target as HTMLFormElement).reset() }, 4800)
+
+    const formData = new FormData(form)
+    formData.append('access_key', WEB3FORMS_ACCESS_KEY)
+    formData.append('from_name',  'Portfolio — sathyapalreddy.dev')
+
+    try {
+      const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+      const data = await res.json()
+
+      if (res.ok && data.success) {
+        setSent(true)
+        form.reset()
+        setTimeout(() => setSent(false), 4000)
+      } else {
+        setError(data.message || 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setError('Network error — check your connection and try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -140,6 +164,16 @@ export default function Contact() {
               onSubmit={handleSubmit}
               className="glass-card rounded-2xl border border-divider p-8 space-y-5"
             >
+              {/* Web3Forms honeypot — hidden from humans, bots fill it and get filtered */}
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
+
               {fields.map((f, i) => (
                 <motion.div
                   key={f.id}
@@ -186,7 +220,7 @@ export default function Contact() {
                       initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
                       className="w-full py-3 rounded-xl text-center text-sm font-semibold bg-green/10 border border-green/25 text-green flex items-center justify-center gap-2"
                     >
-                      <i className="fa-solid fa-check" /> Message Sent!
+                      <i className="fa-solid fa-check" /> Message Sent — I&apos;ll reply soon.
                     </motion.div>
                   ) : (
                     <motion.button
@@ -209,6 +243,17 @@ export default function Contact() {
                     </motion.button>
                   )}
                 </AnimatePresence>
+
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}
+                    role="alert"
+                    className="mt-3 px-4 py-2.5 rounded-xl text-xs font-medium bg-red-500/10 border border-red-500/25 text-red-400 flex items-start gap-2"
+                  >
+                    <i className="fa-solid fa-triangle-exclamation mt-0.5" />
+                    <span>{error}</span>
+                  </motion.div>
+                )}
               </motion.div>
             </form>
           </motion.div>
