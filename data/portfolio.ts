@@ -106,7 +106,7 @@ export const experience: ExperienceItem[] = [
     role:    'Data Engineer Intern',
     company: 'Virtusa',
     type:    'Internship',
-    period:  'Jun 2023 — Oct 2023',
+    period:  'March 2023 — Feb 2024',
     active:  false,
     icon:    'fa-solid fa-database',
     bullets: [
