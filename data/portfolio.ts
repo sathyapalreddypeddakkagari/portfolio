@@ -20,7 +20,7 @@ export const personal: PersonalInfo = {
   phone:      '+1 (571) 337-0184',
   github:     'https://github.com/sathyapalreddypeddakkagari',
   linkedin:   'https://www.linkedin.com/in/sathyapalreddy-peddakkagari-14789b1a5/',
-  resume:     'https://drive.google.com/file/d/1v-IT2a4SAxaBX7kUW0g7DuOHXxBYQFxd/view?usp=sharing',
+  resume:     'https://drive.google.com/file/d/1LN14ll4FYQfIG1g_NRus8FhEkBC-tirv/view?usp=sharing',
   bio: [
     "I'm an AI Data Engineer who builds production-grade data systems that ship intelligence — not just dashboards. I design end-to-end pipelines on AWS and Databricks, then layer LLMs, RAG, and ML models on top so data actually drives decisions.",
     "Proven impact at scale: reduced API latency by 40%, supported a 200% increase in query throughput at Virtusa, and built an FDA regulatory AI platform combining OCR, RAG, and python-docx generation for Precise Software Solutions.",
