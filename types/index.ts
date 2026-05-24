@@ -10,6 +10,7 @@ export interface PersonalInfo {
   phone: string
   github: string
   linkedin: string
+  resume: string
   bio: string[]
 }
 

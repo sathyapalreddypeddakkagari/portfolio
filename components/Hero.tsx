@@ -312,13 +312,13 @@ export default function Hero() {
               />
             </motion.a>
             <motion.a
-              href={personal.linkedin}
+              href={personal.resume}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="btn-primary group"
-              aria-label="View resume on LinkedIn"
+              aria-label="View resume"
             >
               <i className="fa-solid fa-file-lines text-xs" />
               Resume
