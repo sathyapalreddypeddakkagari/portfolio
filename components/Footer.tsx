@@ -23,7 +23,7 @@ export default function Footer() {
         </div>
 
         <p className="text-muted text-xs font-mono">
-          Built with Next.js · TypeScript · Framer Motion — 2026
+          © {new Date().getFullYear()} {personal.name}. All rights reserved.
         </p>
 
         <div className="flex gap-3">

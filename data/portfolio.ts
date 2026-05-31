@@ -30,8 +30,7 @@ export const personal: PersonalInfo = {
 export const typingPhrases: string[] = [
   'AI Data Engineer',
   'GenAI & RAG Engineer',
-  'Cloud Data Pipeline Architect',
-  'ML Platform Engineer',
+  'AI Cloud Data Engineer',
   'Open to AI Data Engineer Roles',
 ]
 
@@ -86,10 +85,10 @@ export const skills: SkillGroup[] = [
 
 export const experience: ExperienceItem[] = [
   {
-    role:    'AI Operations Analyst',
+    role:    'AI Data Engineer',
     company: 'Precise Software Solutions, Inc.',
     type:    'Capstone Project',
-    period:  'Jan 2026 — Present',
+    period:  'Jan 2026 — May 2026',
     active:  true,
     project: 'Smart Inspections — FDA Form 483 AI Drafting Platform',
     icon:    'fa-solid fa-microscope',
@@ -106,7 +105,7 @@ export const experience: ExperienceItem[] = [
     role:    'Data Engineer Intern',
     company: 'Virtusa',
     type:    'Internship',
-    period:  'March 2023 — Feb 2024',
+    period:  'March 2023 — March 2024',
     active:  false,
     icon:    'fa-solid fa-database',
     bullets: [
