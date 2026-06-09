@@ -68,7 +68,7 @@ export default function Publications() {
                       View PDF
                     </motion.a>
                     <motion.a
-                      href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer"
+                      href="https://scholar.google.com/citations?user=HHiKe7YAAAAJ&hl=en" target="_blank" rel="noopener noreferrer"
                       whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium border border-divider text-muted bg-surface2/50 hover:text-secondary hover:border-divider transition-all duration-200"
                     >
