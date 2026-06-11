@@ -6,6 +6,8 @@ import type {
   EducationItem,
   Certification,
   NavLink,
+  GalleryItem,
+  ResearchCollab,
 } from '@/types'
 
 export const personal: PersonalInfo = {
@@ -40,6 +42,7 @@ export const navLinks: NavLink[] = [
   { label: 'Experience',   href: '#experience'   },
   { label: 'Projects',     href: '#projects'     },
   { label: 'Publications', href: '#publications' },
+  { label: 'Gallery',      href: '#gallery'      },
   { label: 'Contact',      href: '#contact'      },
 ]
 
@@ -122,6 +125,8 @@ export const experience: ExperienceItem[] = [
 export const projects: Project[] = [
   {
     title:    'Smart Inspections',
+    image:    '/media/smart-inspections-dashboard.png',
+    tagline:  'AI-assisted FDA Form 483 drafting on AWS — OCR + RAG + LLM with 21 CFR citation validation and python-docx output.',
     org:      'Precise Software Solutions, Inc.',
     period:   'Jan 2026',
     featured: true,
@@ -138,6 +143,8 @@ export const projects: Project[] = [
   },
   {
     title:    'ReadmitAI',
+    image:    '/media/readmitai.png',
+    tagline:  'Diabetes readmission prediction on 101K+ records with PySpark on Databricks; LightGBM served via CI/CD with SHAP explainability.',
     period:   'Nov 2025',
     featured: false,
     badges:   ['ML on Spark', 'Clinical AI', 'CI/CD'],
@@ -153,6 +160,8 @@ export const projects: Project[] = [
   },
   {
     title:    'DocIE',
+    image:    '/media/docie.png',
+    tagline:  'Document-intelligence pipeline — spaCy, ELECTRA, BERT and LLaMA-3.3 for structured extraction, entity linking and QA.',
     period:   'Aug 2025',
     featured: false,
     badges:   ['NLP', 'Document AI', 'LLM'],
@@ -165,6 +174,95 @@ export const projects: Project[] = [
     tags:   ['Python','spaCy','ELECTRA','BERT','LLaMA-3.3','Groq API','Streamlit'],
     github: 'https://github.com/sathyapalreddypeddakkagari/Document-level-Information-Extraction',
     demo:   'https://document-level-information-extraction-ait.streamlit.app/',
+  },
+]
+
+export const gallery: GalleryItem[] = [
+  {
+    src: '/media/smart-inspections.jpeg',
+    title: 'Smart Inspections',
+    caption: 'FDA Form 483 AI Drafting Platform',
+    description: 'Capstone with Precise Software Solutions. An end-to-end AWS platform that drafts FDA Form 483 observations from inspection notes using OCR, a FAISS RAG pipeline over FDA guidance, and Google Gemini — with 21 CFR citation validation and python-docx output.',
+    tag: 'Capstone · Precise Software',
+    icon: 'fa-solid fa-microscope',
+    href: 'https://github.com/eshwaranish-varma/Smart-inspections',
+  },
+  {
+    src: '/media/readmitai.png',
+    title: 'ReadmitAI',
+    caption: 'Clinical ML at Scale on Spark',
+    description: 'Diabetes hospital-readmission prediction over 101,766 inpatient records on Databricks + AWS EMR with PySpark. LightGBM (ROC-AUC 0.852) deployed via CI/CD to AWS Lambda, with SHAP explainability surfacing top clinical predictors.',
+    tag: 'Research',
+    icon: 'fa-solid fa-heart-pulse',
+    href: 'https://github.com/sathyapalreddypeddakkagari/transparent-ai-diabetes-readmission',
+  },
+  {
+    src: '/media/docie.png',
+    title: 'DocIE',
+    caption: 'Document Intelligence (NLP)',
+    description: 'A modular document-level information-extraction pipeline combining fine-tuned spaCy, ELECTRA (NER) and BERT (relation extraction), with LLaMA-3.3 via Groq for cross-section entity linking and RoBERTa-SQuAD2.0 for semantic QA.',
+    tag: 'Research',
+    icon: 'fa-solid fa-file-lines',
+    href: 'https://github.com/sathyapalreddypeddakkagari/Document-level-Information-Extraction',
+  },
+  {
+    src: '/media/irjet.png',
+    title: 'IRJET Publication',
+    caption: 'Peer-Reviewed Research',
+    description: 'Undergraduate research published in the International Research Journal of Engineering and Technology (IRJET), a peer-reviewed international journal — completed during B.Tech at the Institute of Aeronautical Engineering.',
+    tag: 'Publication',
+    icon: 'fa-solid fa-book-open',
+    href: 'https://www.irjet.net/archives/V10/i5/IRJET-V10I527.pdf',
+  },
+  {
+    src: '/media/precise.jpeg',
+    title: 'Precise Software Solutions',
+    caption: 'AI / Data Engineering Collaboration',
+    description: 'Collaborated with Precise Software Solutions on regulatory AI tooling — building RAG, OCR and document-generation services for FDA inspection workflows on a secure, Terraform-provisioned AWS stack.',
+    tag: 'Collaboration',
+    icon: 'fa-solid fa-handshake',
+    href: 'https://www.linkedin.com/posts/gmu-partnership-daen-share-7463011052264390656-DZjl/',
+  },
+  {
+    src: '/media/virtusa.png',
+    title: 'Virtusa',
+    caption: 'Data Engineering Internship',
+    description: 'Built and scaled real-time data pipelines with Scala, Spark, Kafka and AWS — supporting a 200% increase in query throughput and a 40% reduction in API latency for user-acquisition analytics.',
+    tag: 'Collaboration',
+    icon: 'fa-solid fa-database',
+  },
+]
+
+export const researchCollabs: ResearchCollab[] = [
+  {
+    title: 'University Class Topper',
+    org: 'Institute of Aeronautical Engineering, Hyderabad',
+    period: 'Sep 2023',
+    image: '/media/btech-graduation.jpeg',
+    icon: 'fa-solid fa-trophy',
+    tagline: 'Felicitated on stage as a university class topper — recognized among the highest-ranked B.Tech graduates of the institute.',
+    tags: ['Top Rank', 'B.Tech', 'Academic Honor'],
+    links: [],
+  },
+  {
+    title: 'AWS Summit — Washington, D.C.',
+    org: 'Amazon Web Services',
+    period: '2025',
+    image: '/media/aws-summit.jpeg',
+    icon: 'fa-brands fa-aws',
+    tagline: 'Attended the AWS Summit with hands-on workshops on Amazon SageMaker and building agentic AI on the AWS platform.',
+    tags: ['AWS', 'SageMaker', 'Agentic AI'],
+    links: [],
+  },
+  {
+    title: 'Hacklytics 2025',
+    org: 'Georgia Institute of Technology',
+    period: 'Feb 2025',
+    image: '/media/hacklytics.jpeg',
+    icon: 'fa-solid fa-laptop-code',
+    tagline: 'Participated in Hacklytics 2025 — the flagship data-science hackathon at Georgia Tech — rapid prototyping under the clock with a team.',
+    tags: ['Hackathon', 'Data Science', 'Georgia Tech'],
+    links: [],
   },
 ]
 

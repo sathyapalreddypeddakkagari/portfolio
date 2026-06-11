@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { projects } from '@/data/portfolio'
+import Link from 'next/link'
 import type { Project } from '@/types'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -196,6 +197,20 @@ export default function Projects() {
             <ProjectCard key={p.title} item={p} index={i} />
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2, ease }}
+          className="mt-12 flex justify-center"
+        >
+          <Link href="/work" className="btn-primary group">
+            <i className="fa-solid fa-layer-group text-xs" />
+            Explore all projects &amp; research
+            <i className="fa-solid fa-arrow-right text-xs opacity-70" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

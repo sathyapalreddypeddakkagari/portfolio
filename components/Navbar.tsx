@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { navLinks, personal } from '@/data/portfolio'
@@ -11,6 +12,8 @@ export default function Navbar() {
   const [scrolled,  setScrolled]  = useState(false)
   const [activeHref, setActive]   = useState('')
   const [menuOpen,  setMenuOpen]  = useState(false)
+  const pathname = usePathname()
+  const onHome = pathname === '/'
 
   useEffect(() => {
     const onScroll = () => {
@@ -40,7 +43,7 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
 
           {/* Logo */}
-          <a href="#hero" className="flex items-center gap-2.5 group flex-shrink-0">
+          <a href={onHome ? '#hero' : '/'} className="flex items-center gap-2.5 group flex-shrink-0">
             <div className="w-9 h-9 rounded-lg overflow-hidden ring-1 ring-divider shadow-lg shadow-accent/20 bg-black">
               <Image src={assetPath('/logo.png')} alt={personal.name} width={36} height={36} priority />
             </div>
@@ -54,7 +57,7 @@ export default function Navbar() {
             {navLinks.map(link => (
               <li key={link.href}>
                 <a
-                  href={link.href}
+                  href={onHome ? link.href : '/' + link.href}
                   className={`relative px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 ${
                     activeHref === link.href ? 'text-primary' : 'text-muted hover:text-secondary'
                   }`}
@@ -112,7 +115,7 @@ export default function Navbar() {
               {navLinks.map(link => (
                 <li key={link.href}>
                   <a
-                    href={link.href}
+                    href={onHome ? link.href : '/' + link.href}
                     onClick={() => setMenuOpen(false)}
                     className="block px-4 py-2.5 rounded-lg text-sm font-medium text-secondary hover:text-primary hover:bg-surface2 transition-all"
                   >

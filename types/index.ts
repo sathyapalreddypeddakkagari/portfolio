@@ -52,6 +52,8 @@ export interface Project {
   tags: string[]
   github: string
   demo?: string
+  image?: string
+  tagline?: string
 }
 
 export interface EducationItem {
@@ -80,4 +82,31 @@ export interface SocialLink {
   icon: string
   href: string
   label: string
+}
+
+export interface GalleryItem {
+  src?: string
+  title: string
+  caption: string
+  description: string
+  tag: string
+  icon: string
+  href?: string
+}
+
+export interface ResearchLink {
+  label: string
+  href: string
+  icon: string
+}
+
+export interface ResearchCollab {
+  title: string
+  org?: string
+  period: string
+  image?: string
+  icon: string
+  tagline: string
+  tags: string[]
+  links: ResearchLink[]
 }

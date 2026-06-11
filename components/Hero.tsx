@@ -271,8 +271,8 @@ export default function Hero() {
             <span className="font-medium">I&apos;m a</span>
             <span className="gradient-text font-grotesk font-semibold">{typedText}</span>
             <motion.span
-              animate={{ opacity: [1, 0, 1] }}
-              transition={{ duration: 0.9, repeat: Infinity, ease: 'steps(1)' }}
+              animate={{ opacity: [1, 1, 0, 0] }}
+              transition={{ duration: 1, repeat: Infinity, times: [0, 0.5, 0.5, 1], ease: 'linear' }}
               className="text-accent font-light"
             >
               |
