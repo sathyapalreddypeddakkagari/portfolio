@@ -25,7 +25,7 @@ export const personal: PersonalInfo = {
   resume:     'https://drive.google.com/file/d/1LN14ll4FYQfIG1g_NRus8FhEkBC-tirv/view?usp=sharing',
   bio: [
     "I'm an AI Data Engineer who builds production-grade data systems that ship intelligence — not just dashboards. I design end-to-end pipelines on AWS and Databricks, then layer LLMs, RAG, and ML models on top so data actually drives decisions.",
-    "Proven impact at scale: reduced API latency by 40%, supported a 200% increase in query throughput at Virtusa, and built an FDA regulatory AI platform combining OCR, RAG, and python-docx generation for Precise Software Solutions.",
+    "Proven impact at scale: reduced API latency by 40%, supported a 200% increase in query throughput at Virtusa, and built an FDA regulatory AI platform (OCR, RAG, LangChain, python-docx) deployed via Docker Compose + Coolify for Precise Software Solutions.",
   ],
 }
 
@@ -67,14 +67,14 @@ export const skills: SkillGroup[] = [
     icon:  '🗄️',
     label: 'Databases & Modeling',
     color: 'amber',
-    items: ['PostgreSQL','MSSQL','SQL Server','MongoDB','Vector DBs','Data Modeling',
+    items: ['PostgreSQL','MSSQL','SQL Server','Vector DBs','Data Modeling',
             'Database Administration','Query Optimization','Indexing Strategies'],
   },
   {
     icon:  '💻',
     label: 'Languages & Backend',
     color: 'rose',
-    items: ['Python','Scala','Java','R','TypeScript','SQL','FastAPI','Next.js',
+    items: ['Python','TypeScript','SQL','FastAPI','Next.js',
             'ReactJS','HTML','CSS','JavaScript'],
   },
   {
@@ -96,13 +96,14 @@ export const experience: ExperienceItem[] = [
     project: 'Smart Inspections — FDA Form 483 AI Drafting Platform',
     icon:    'fa-solid fa-microscope',
     bullets: [
-      'Built an end-to-end AI-assisted FDA Form 483 drafting platform on AWS — uploads stored in S3, infrastructure provisioned via Terraform for secure, compliant deployments.',
-      'Implemented OCR pipeline (PyMuPDF + Tesseract) for handwritten and typed notes; integrated LangChain + Google Gemini to generate draft observations with 21 CFR citations and evidence.',
-      'Designed a RAG (Retrieval-Augmented Generation) system over FDA guidance PDFs using FAISS vector search, plus a Title 21 CFR citation service for matching and validating regulatory references.',
-      'Shipped a document-generation pipeline (python-docx) producing FDA Form 483 and EIR .docx files in official format, integrated into a GitHub Actions CI/CD workflow.',
+      'Built an end-to-end AI-assisted FDA Form 483 drafting platform — full-stack Docker Compose deployment (NGINX + Next.js + FastAPI) on a Hostinger VPS via Coolify, with Supabase PostgreSQL as the shared database.',
+      'Implemented OCR pipelines using PyMuPDF, Tesseract to extract inspection notes from PDFs and images for AI-assisted document drafting.',
+      'Developed a LangChain-based RAG pipeline using FAISS and regulatory guidance documents to generate grounded observations, supporting evidence traceability and Title 21 CFR citation validation.',
+      'Created template-based Form 483 and EIR Word-document generation pipelines using python-docx, with document versioning, comments, electronic signatures, and audit history.',
+      'Deployed containerized Next.js frontend and FastAPI backend services through Coolify on a Hostinger VPS, with GitHub Actions providing automated testing and build validation.',
     ],
-    tags: ['Python','FastAPI','TypeScript','LangChain','PostgreSQL','Next.js',
-           'Google Gemini','FAISS','PyMuPDF','Tesseract','python-docx','AWS S3','Terraform'],
+    tags: ['Python','FastAPI','TypeScript','LangChain','PostgreSQL','Next.js','Supabase',
+           'Google Gemini','OpenAI','FAISS','PyMuPDF','Tesseract','python-docx','Docker','Coolify','Hostinger VPS'],
   },
   {
     role:    'Data Engineer Intern',
@@ -137,7 +138,7 @@ export const projects: Project[] = [
       { val: '21 CFR', label: 'Citation Validation' },
       { val: 'OCR',    label: 'Handwritten + Typed' },
     ],
-    tags:   ['Python','FastAPI','LangChain','Next.js','Google Gemini','FAISS','PostgreSQL','Tesseract','python-docx','AWS S3','Terraform'],
+    tags:   ['Python','FastAPI','LangChain','Next.js','Google Gemini','FAISS','PostgreSQL','Tesseract','python-docx','Hostinger VPS','Supabase'],
     github: 'https://github.com/eshwaranish-varma/Smart-inspections',
     demo:   'https://qibk1k655lpvklywco4r50ba.177.7.42.159.sslip.io/',
   },
