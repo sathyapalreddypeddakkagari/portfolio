@@ -25,7 +25,7 @@ export const personal: PersonalInfo = {
   resume:     'https://drive.google.com/file/d/1LN14ll4FYQfIG1g_NRus8FhEkBC-tirv/view?usp=sharing',
   bio: [
     "I'm an AI Data Engineer who builds production-grade data systems that ship intelligence — not just dashboards. I design end-to-end pipelines on AWS and Databricks, then layer LLMs, RAG, and ML models on top so data actually drives decisions.",
-    "Proven impact at scale: reduced API latency by 40%, supported a 200% increase in query throughput at Virtusa, and built an FDA regulatory AI platform combining OCR, RAG, and python-docx generation for Precise Software Solutions.",
+    "Proven impact at scale: reduced API latency by 40%, supported a 200% increase in query throughput at Virtusa, and built an FDA regulatory AI platform (OCR, RAG, LangChain, python-docx) deployed via Docker Compose + Coolify for Precise Software Solutions.",
   ],
 }
 
@@ -96,13 +96,13 @@ export const experience: ExperienceItem[] = [
     project: 'Smart Inspections — FDA Form 483 AI Drafting Platform',
     icon:    'fa-solid fa-microscope',
     bullets: [
-      'Built an end-to-end AI-assisted FDA Form 483 drafting platform on AWS — uploads stored in S3, infrastructure provisioned via Terraform for secure, compliant deployments.',
+      'Built an end-to-end AI-assisted FDA Form 483 drafting platform — full-stack Docker Compose deployment (NGINX + Next.js + FastAPI) on a Hostinger VPS via Coolify, with Supabase PostgreSQL as the shared database.',
       'Implemented OCR pipeline (PyMuPDF + Tesseract) for handwritten and typed notes; integrated LangChain + Google Gemini to generate draft observations with 21 CFR citations and evidence.',
       'Designed a RAG (Retrieval-Augmented Generation) system over FDA guidance PDFs using FAISS vector search, plus a Title 21 CFR citation service for matching and validating regulatory references.',
-      'Shipped a document-generation pipeline (python-docx) producing FDA Form 483 and EIR .docx files in official format, integrated into a GitHub Actions CI/CD workflow.',
+      'Shipped a document-generation pipeline (python-docx) producing FDA Form 483 and EIR .docx files in official format; deployed via Coolify with GitHub Actions CI and NGINX reverse proxy.',
     ],
     tags: ['Python','FastAPI','TypeScript','LangChain','PostgreSQL','Next.js',
-           'Google Gemini','FAISS','PyMuPDF','Tesseract','python-docx','AWS S3','Terraform'],
+           'Google Gemini','FAISS','PyMuPDF','Tesseract','python-docx','Docker','Supabase'],
   },
   {
     role:    'Data Engineer Intern',
@@ -126,18 +126,18 @@ export const projects: Project[] = [
   {
     title:    'Smart Inspections',
     image:    '/media/smart-inspections-dashboard.png',
-    tagline:  'AI-assisted FDA Form 483 drafting on AWS — OCR + RAG + LLM with 21 CFR citation validation and python-docx output.',
+    tagline:  'AI-assisted FDA Form 483 drafting — OCR + RAG + LLM with 21 CFR citation validation, python-docx output, and Docker Compose deployment on Hostinger VPS.',
     org:      'Precise Software Solutions, Inc.',
     period:   'Jan 2026',
     featured: true,
     badges:   ['Capstone', 'RAG Pipeline', 'FDA Regulatory AI', 'OCR + LLM'],
-    desc:     'End-to-end AI-assisted FDA Form 483 drafting platform on AWS — OCR (PyMuPDF, Tesseract) for handwritten + typed inspection notes, LangChain + Google Gemini for draft generation with 21 CFR citations, RAG over FDA guidance PDFs (FAISS), and python-docx generation matching official format. Wired into GitHub Actions CI/CD; Terraform-provisioned infrastructure.',
+    desc:     'End-to-end AI-assisted FDA Form 483 & EIR drafting platform — OCR (PyMuPDF, Tesseract) for handwritten + typed inspection notes, LangChain + Google Gemini for draft generation with 21 CFR citations, RAG over FDA guidance PDFs (FAISS), and python-docx generation matching official format. Full-stack Docker Compose (NGINX + Next.js + FastAPI) deployed on Hostinger VPS via Coolify; Supabase PostgreSQL as the shared database.',
     stats: [
       { val: 'RAG',    label: 'FAISS Vector Search' },
       { val: '21 CFR', label: 'Citation Validation' },
       { val: 'OCR',    label: 'Handwritten + Typed' },
     ],
-    tags:   ['Python','FastAPI','LangChain','Next.js','Google Gemini','FAISS','PostgreSQL','Tesseract','python-docx','AWS S3','Terraform'],
+    tags:   ['Python','FastAPI','LangChain','Next.js','Google Gemini','FAISS','PostgreSQL','Tesseract','python-docx','Docker','Supabase'],
     github: 'https://github.com/eshwaranish-varma/Smart-inspections',
     demo:   'https://qibk1k655lpvklywco4r50ba.177.7.42.159.sslip.io/',
   },
@@ -182,7 +182,7 @@ export const gallery: GalleryItem[] = [
     src: '/media/smart-inspections.jpeg',
     title: 'Smart Inspections',
     caption: 'FDA Form 483 AI Drafting Platform',
-    description: 'Capstone with Precise Software Solutions. An end-to-end AWS platform that drafts FDA Form 483 observations from inspection notes using OCR, a FAISS RAG pipeline over FDA guidance, and Google Gemini — with 21 CFR citation validation and python-docx output.',
+    description: 'Capstone with Precise Software Solutions. An end-to-end platform that drafts FDA Form 483 observations and EIR from inspection notes using OCR, a FAISS RAG pipeline over FDA guidance, and Google Gemini — with 21 CFR citation validation, python-docx output, and Docker Compose deployment on Hostinger VPS via Coolify.',
     tag: 'Capstone · Precise Software',
     icon: 'fa-solid fa-microscope',
     href: 'https://github.com/eshwaranish-varma/Smart-inspections',
