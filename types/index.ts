@@ -64,6 +64,9 @@ export interface EducationItem {
   location: string
   current: boolean
   icon: string
+  logo?: string
+  thesis?: string
+  coursework?: string[]
 }
 
 export interface Certification {
@@ -71,6 +74,7 @@ export interface Certification {
   issuer: string
   date: string
   link?: string
+  badge?: string
 }
 
 export interface NavLink {

@@ -117,7 +117,7 @@ export default function ProjectsResearchView() {
                 whileHover={{ y: -6 }}
                 className="group flex flex-col rounded-2xl overflow-hidden glass-card border border-divider hover:border-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5"
               >
-                <PhotoTile src={r.image} alt={r.title} icon={r.icon} fit="contain" rounded="rounded-none" className="aspect-[16/9] w-full" />
+                <PhotoTile src={r.image} alt={r.title} icon={r.icon} fit="cover" rounded="rounded-none" className="aspect-[16/9] w-full" />
                 <div className="p-6 flex flex-col gap-3 flex-1">
                   <div className="w-10 h-10 -mt-11 relative z-10 rounded-xl bg-accent/15 border border-accent/25 backdrop-blur-sm flex items-center justify-center text-accent">
                     <i className={`${r.icon} text-base`} />

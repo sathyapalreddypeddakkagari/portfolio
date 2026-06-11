@@ -9,34 +9,58 @@ import PhotoTile from './PhotoTile'
 const ease = [0.22, 1, 0.36, 1] as const
 
 export default function ShowcaseGallery() {
-  const trackRef = useRef<HTMLDivElement>(null)
   const pausedRef = useRef(false)
   const [active, setActive] = useState<GalleryItem | null>(null)
+  const [visible, setVisible] = useState(3)
+  const [index, setIndex] = useState(0)
 
-  const scrollByCard = useCallback((dir: number) => {
-    const track = trackRef.current
-    if (!track) return
-    const card = track.querySelector<HTMLElement>('[data-card]')
-    const amount = card ? card.offsetWidth + 24 : track.clientWidth * 0.8
-    const max = track.scrollWidth - track.clientWidth
-    let next = track.scrollLeft + dir * amount
-    if (next > max - 4) next = 0
-    if (next < 0) next = max
-    track.scrollTo({ left: next, behavior: 'smooth' })
+  const total = gallery.length
+
+  // Responsive: 1 card on mobile, 2 on tablet, 3 on desktop
+  useEffect(() => {
+    const compute = () => {
+      const w = window.innerWidth
+      setVisible(w >= 1024 ? 3 : w >= 640 ? 2 : 1)
+    }
+    compute()
+    window.addEventListener('resize', compute)
+    return () => window.removeEventListener('resize', compute)
   }, [])
 
+  const maxIndex = Math.max(0, total - visible)
+
+  // Keep index in range when the visible count changes
+  useEffect(() => {
+    setIndex((i) => Math.min(i, maxIndex))
+  }, [maxIndex])
+
+  const go = useCallback(
+    (dir: number) => {
+      setIndex((i) => {
+        const next = i + dir
+        if (next > maxIndex) return 0
+        if (next < 0) return maxIndex
+        return next
+      })
+    },
+    [maxIndex]
+  )
+
+  // Auto-advance one card at a time (out left, in right)
   useEffect(() => {
     const id = setInterval(() => {
-      if (!pausedRef.current && !active) scrollByCard(1)
+      if (!pausedRef.current && !active) go(1)
     }, 3800)
     return () => clearInterval(id)
-  }, [scrollByCard, active])
+  }, [go, active])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setActive(null) }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
+
+  const pages = maxIndex + 1
 
   return (
     <section id="gallery" className="py-28 relative overflow-hidden bg-bg">
@@ -67,59 +91,77 @@ export default function ShowcaseGallery() {
       </div>
 
       <div
-        className="relative mt-8"
+        className="max-w-6xl mx-auto px-6 relative mt-8"
         onMouseEnter={() => { pausedRef.current = true }}
         onMouseLeave={() => { pausedRef.current = false }}
       >
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-12 md:w-28 bg-gradient-to-r from-bg to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-12 md:w-28 bg-gradient-to-l from-bg to-transparent" />
+        <div className="flex items-center gap-3">
+          <button
+            aria-label="Previous"
+            onClick={() => go(-1)}
+            className="hidden sm:flex flex-shrink-0 w-11 h-11 rounded-full items-center justify-center glass-card border border-divider text-secondary hover:text-accent hover:border-accent/40 transition-all"
+          >
+            <i className="fa-solid fa-chevron-left text-sm" />
+          </button>
 
-        <button
-          aria-label="Previous"
-          onClick={() => scrollByCard(-1)}
-          className="hidden sm:flex absolute left-3 md:left-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full items-center justify-center glass-card border border-divider text-secondary hover:text-accent hover:border-accent/40 transition-all"
-        >
-          <i className="fa-solid fa-chevron-left text-sm" />
-        </button>
-        <button
-          aria-label="Next"
-          onClick={() => scrollByCard(1)}
-          className="hidden sm:flex absolute right-3 md:right-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full items-center justify-center glass-card border border-divider text-secondary hover:text-accent hover:border-accent/40 transition-all"
-        >
-          <i className="fa-solid fa-chevron-right text-sm" />
-        </button>
-
-        <div
-          ref={trackRef}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-[8vw] md:px-[16vw] py-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {gallery.map((g, i) => (
-            <motion.button
-              key={g.title}
-              data-card
-              onClick={() => setActive(g)}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease }}
-              whileHover={{ y: -6 }}
-              className="snap-center group relative flex-shrink-0 w-[80vw] sm:w-[56vw] md:w-[42%] lg:w-[31%] text-left rounded-3xl overflow-hidden border border-divider hover:border-accent/30 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/10"
+          {/* Viewport: exactly `visible` cards shown at once */}
+          <div className="overflow-hidden flex-1 py-4">
+            <motion.div
+              className="flex"
+              animate={{ x: `-${(index * 100) / total}%` }}
+              transition={{ duration: 0.6, ease }}
+              style={{ width: `${(total / visible) * 100}%` }}
             >
-              <PhotoTile src={g.src} alt={g.title} icon={g.icon} fit="contain" rounded="rounded-none" className="aspect-[4/3] w-full" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
-              <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/15 backdrop-blur-sm text-white border border-white/20">
-                {g.tag}
-              </span>
-              <div className="absolute bottom-0 inset-x-0 p-5">
-                <h3 className="font-grotesk font-bold text-white text-lg leading-tight">{g.title}</h3>
-                <p className="text-white/80 text-xs mt-1">{g.caption}</p>
-                <span className="inline-flex items-center gap-1.5 mt-3 text-[11px] font-medium text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Read more <i className="fa-solid fa-arrow-right text-[9px]" />
-                </span>
-              </div>
-            </motion.button>
-          ))}
+              {gallery.map((g) => (
+                /* Each slot is exactly trackWidth/total; gutter lives inside via padding
+                   so the percentage translate stays pixel-aligned. */
+                <div key={g.title} className="px-3" style={{ flex: `0 0 ${100 / total}%` }}>
+                  <button
+                    onClick={() => setActive(g)}
+                    className="group relative w-full text-left rounded-xl overflow-hidden border border-divider hover:border-accent/30 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/10"
+                  >
+                    <PhotoTile src={g.src} alt={g.title} icon={g.icon} fit="cover" rounded="rounded-none" className="aspect-[4/3] w-full" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+                    <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/15 backdrop-blur-sm text-white border border-white/20">
+                      {g.tag}
+                    </span>
+                    <div className="absolute bottom-0 inset-x-0 p-5">
+                      <h3 className="font-grotesk font-bold text-white text-lg leading-tight">{g.title}</h3>
+                      <p className="text-white/80 text-xs mt-1">{g.caption}</p>
+                      <span className="inline-flex items-center gap-1.5 mt-3 text-[11px] font-medium text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Read more <i className="fa-solid fa-arrow-right text-[9px]" />
+                      </span>
+                    </div>
+                  </button>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          <button
+            aria-label="Next"
+            onClick={() => go(1)}
+            className="hidden sm:flex flex-shrink-0 w-11 h-11 rounded-full items-center justify-center glass-card border border-divider text-secondary hover:text-accent hover:border-accent/40 transition-all"
+          >
+            <i className="fa-solid fa-chevron-right text-sm" />
+          </button>
         </div>
+
+        {/* Pagination dots */}
+        {pages > 1 && (
+          <div className="flex justify-center gap-2 mt-6">
+            {Array.from({ length: pages }).map((_, p) => (
+              <button
+                key={p}
+                aria-label={`Go to position ${p + 1}`}
+                onClick={() => setIndex(p)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  p === index ? 'w-6 bg-accent' : 'w-1.5 bg-divider hover:bg-accent/40'
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       <AnimatePresence>
@@ -135,7 +177,7 @@ export default function ShowcaseGallery() {
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ duration: 0.35, ease }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-lg rounded-3xl overflow-hidden glass-card border border-divider shadow-2xl"
+              className="relative w-full max-w-lg rounded-2xl overflow-hidden glass-card border border-divider shadow-2xl"
             >
               <button
                 aria-label="Close"
@@ -144,7 +186,7 @@ export default function ShowcaseGallery() {
               >
                 <i className="fa-solid fa-xmark text-sm" />
               </button>
-              <PhotoTile src={active.src} alt={active.title} icon={active.icon} fit="contain" rounded="rounded-none" className="aspect-[16/9] w-full" />
+              <PhotoTile src={active.src} alt={active.title} icon={active.icon} fit="cover" rounded="rounded-none" className="aspect-[16/9] w-full" />
               <div className="p-6 sm:p-7">
                 <span className="inline-flex px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-accent/10 border border-accent/25 text-accent mb-3">
                   {active.tag}

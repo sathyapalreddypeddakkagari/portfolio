@@ -275,6 +275,17 @@ export const education: EducationItem[] = [
     location: 'Fairfax, Virginia, USA',
     current:  true,
     icon:     'fa-solid fa-graduation-cap',
+    logo:     '/media/gmu-logo.png',
+    coursework: [
+      'Natural Language Processing',
+      'Artificial Neural Networks',
+      'Data Science in Practice',
+      'Social Network Analysis',
+      'Computer Vision, Foundations and Applications',
+      'Introduction to Database Systems',
+      'Introduction to Data Analysis',
+      'Data Structures and Algorithms',
+    ],
   },
   {
     degree:   'B.Tech Computer Engineering',
@@ -284,6 +295,7 @@ export const education: EducationItem[] = [
     location: 'Hyderabad, India',
     current:  false,
     icon:     'fa-solid fa-microchip',
+    logo:     '/media/iare-logo.png',
   },
 ]
 
@@ -293,11 +305,13 @@ export const certifications: Certification[] = [
     issuer: 'Oracle',
     date:   'Jun 2023',
     link:   'https://catalog-education.oracle.com/ords/certview/sharebadge?id=6DBB560A74E97904C55C670D7E60CD1CB0B75F163A10D1CDD9F6FB0953D2AB91',
+    badge:  '/media/oracle-plsql-ocp.png',
   },
   {
     name:   'Oracle Database SQL Certified Associate',
     issuer: 'Oracle',
     date:   'Apr 2023',
     link:   'https://catalog-education.oracle.com/ords/certview/sharebadge?id=5B288A6EEB56D089CC0C18BB39BA54F6B53CAA238AA78B72CD4F194122C6F690',
+    badge:  '/media/oracle-sql-associate.png',
   },
 ]
