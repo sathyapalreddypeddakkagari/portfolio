@@ -22,7 +22,7 @@ export const personal: PersonalInfo = {
   phone:      '+1 (571) 337-0184',
   github:     'https://github.com/sathyapalreddypeddakkagari',
   linkedin:   'https://www.linkedin.com/in/sathyapalreddy-peddakkagari-14789b1a5/',
-  resume:     'https://drive.google.com/file/d/1LN14ll4FYQfIG1g_NRus8FhEkBC-tirv/view?usp=sharing',
+  resume:     'https://drive.google.com/file/d/1B-MlZrXDFJUBcAS4ZktbzbVRBeYbrm-e/view?usp=sharing',
   bio: [
     "I'm an AI Data Engineer who builds production-grade data systems that ship intelligence — not just dashboards. I design end-to-end pipelines on AWS and Databricks, then layer LLMs, RAG, and ML models on top so data actually drives decisions.",
     "Proven impact at scale: reduced API latency by 40%, supported a 200% increase in query throughput at Virtusa, and built an FDA regulatory AI platform (OCR, RAG, LangChain, python-docx) deployed via Docker Compose + Coolify for Precise Software Solutions.",
@@ -139,7 +139,7 @@ export const projects: Project[] = [
     ],
     tags:   ['Python','FastAPI','LangChain','Next.js','Google Gemini','FAISS','PostgreSQL','Tesseract','python-docx','Docker','Supabase'],
     github: 'https://github.com/eshwaranish-varma/Smart-inspections',
-    demo:   'https://qibk1k655lpvklywco4r50ba.177.7.42.159.sslip.io/',
+    demo:   'https://github.com/eshwaranish-varma/Smart-inspections',
   },
   {
     title:    'ReadmitAI',
